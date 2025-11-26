@@ -1,47 +1,48 @@
-# Astro Starter Kit: Minimal
+# Ocean Notes (Astro)
 
-```sh
-npm create astro@latest -- --template minimal
-```
+A simple, modern notes app built with Astro. It uses an offline-first approach with `localStorage` and a small store. The UI follows the Ocean Professional theme (primary #2563EB, secondary #F59E0B).
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+## Quick Start
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+- Install dependencies:
+  - npm install
+- Start the dev server (port 3000 is configured):
+  - npm run dev
+- Open:
+  - http://localhost:3000
 
-## 🚀 Project Structure
+## Features
 
-Inside of your Astro project, you'll see the following folders and files:
+- Sidebar notes list with search and last-updated sorting
+- Create, read, update, delete notes
+- Autosave with debounce while typing
+- Markdown preview (safe subset)
+- Keyboard shortcuts:
+  - Ctrl/Cmd+S to save
+  - Ctrl/Cmd+N to new note
+- Offline-first with localStorage
+- Theme toggle (light/dark)
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## Structure
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+- src/pages/index.astro — main two-pane layout (sidebar + editor/preview)
+- public/scripts/store.js — minimal store with localStorage persistence and an adapter interface
+- public/scripts/components.js — UI helpers (list rendering, markdown preview, toast, debounce)
+- src/layouts/Layout.astro — base styles and Ocean theme variables
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Environment
 
-Any static assets, like images, can be placed in the `public/` directory.
+This project reads PUBLIC_* envs at the container level. No backend is used now. For a future backend:
+- Define PUBLIC_API_BASE in the environment.
+- Swap the adapter in public/scripts/store.js to an HTTP-based implementation.
 
-## 🧞 Commands
+## Notes
 
-All commands are run from the root of the project, from a terminal:
+- First run seeds a “Welcome to Notes” example.
+- All data is stored in browser localStorage under key `notes.v1`.
+- No external UI libraries are required.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Build
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- npm run build
+- npm run preview
